@@ -4,6 +4,7 @@ import { Component, ViewEncapsulation } from '@angular/core';
 
 @Component({
   selector: 'cypress-ngxs-nx-welcome',
+  standalone: true,
   template: `
     <!--
      * * * * * * * * * * * * * * * * * * * * * * * * * * * *

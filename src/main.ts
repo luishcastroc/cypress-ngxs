@@ -1,7 +1,23 @@
-import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
+import { registerLocaleData } from '@angular/common';
+import localeEsMx from '@angular/common/locales/es-MX';
+import { importProvidersFrom } from '@angular/core';
+import { bootstrapApplication, BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NgxsModule } from '@ngxs/store';
 
-import { AppModule } from './app/app.module';
+import { AppState } from './app/_store/app-state.state';
+import { AppComponent } from './app/app.component';
 
-platformBrowserDynamic()
-  .bootstrapModule(AppModule)
-  .catch((err) => console.error(err));
+registerLocaleData(localeEsMx, 'es-Mx');
+
+bootstrapApplication(AppComponent, {
+  providers: [
+    importProvidersFrom(
+      BrowserModule,
+      BrowserAnimationsModule,
+
+      //NGXS store module
+      NgxsModule.forRoot([AppState], {})
+    ),
+  ],
+}).catch((err) => console.error(err));
